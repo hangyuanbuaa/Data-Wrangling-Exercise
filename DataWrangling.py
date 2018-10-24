@@ -53,4 +53,40 @@ for phrase in asap_list:
 # series.values
     assert phrase not in df_clean.StartDate.values
 # More steps: Reassess and Iterate, Store
+
 #----------------------------------------------------
+
+# Text Files in Python
+import glob
+for review in glob.glob('review/*.txt'):
+    with open(review, encoding='utf-8') as file:
+        file.readline()
+        file.read()
+#        print(file.readline())
+#        break
+# in Python 3 always open files with explicit encoding
+
+#----------------------------------------------------
+
+# API > MediaWiki
+import wptools
+
+page = wptools.page('E.T._the_Extra-Terrestrial').get()
+page.data['image'][0]               # JSON array  > python dict
+page.data['infobox']['director']    # JSON object > python list
+
+# or use json library to parse
+import simplejson as json
+
+#----------------------------------------------------
+
+# Relational Databases in python
+
+from sqlalchemy import create_engine
+# connect to a database
+engine = create_engine('sqlite:///bestofrt.db')
+# store pandas DataFrame in Database
+df.to_sql('master', engine, index=False)
+
+# read database data into a pandas DataFrame
+df_gather = pd.read_sql('SELECT * FROM master', engine)
