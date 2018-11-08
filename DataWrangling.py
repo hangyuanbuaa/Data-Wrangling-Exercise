@@ -78,6 +78,13 @@ page.data['infobox']['director']    # JSON object > python list
 # or use json library to parse
 import simplejson as json
 
+# writing JSON to a file
+with open('data.txt', 'w') as outfile:
+    json.dump(data, outfile)
+
+# reading JSON from a file
+with open('data.txt') as json_file:
+    data = json.loads(json_file)
 #----------------------------------------------------
 
 # Relational Databases in python
